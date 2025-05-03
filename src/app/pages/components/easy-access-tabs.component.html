@@ -1,0 +1,73 @@
+<div class="bg-[--border] rounded-lg flex px-1 select-none">
+  <div *ngFor="let tab of tabs" (click)="setTab(tab)"
+    class="flex-1 my-1 p-1 mx-[2px] text-center rounded-lg flex gap-1 items-center justify-center font-semibold"
+    [class.bg-[--background]]="currentTab() === tab" [class.text-[--muted-foreground]]="currentTab() !== tab">
+    <i-lucide [img]="tab.icon" class="size-4"></i-lucide>
+    <span class="text-xs">{{tab.name}}</span>
+  </div>
+</div>
+
+<div class="rounded-xl border p-4 mt-4">
+
+  <!-- Card Title -->
+  <div class="flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="rounded-full bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] p-2">
+        <i-lucide [img]="currentTab().icon" class="size-4 text-[--accent]"></i-lucide>
+      </div>
+      <h1 class="text-xl font-semibold leading-none tracking-tight">{{currentTab().name}}</h1>
+    </div>
+    <a class="px-4 py-2 text-[0.6rem] font-semibold hover:bg-[--border] rounded-xl">View All</a>
+  </div>
+
+  <!-- Communities -->
+  <div *ngIf="currentTab().id === 'communities'">
+    <div *ngFor="let community of communities"
+      class="border rounded-xl mt-4 flex flex-col p-4 hover:bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] hover:border-[--accent]"
+      [class.bg-[color-mix(in_srgb,var(--accent)_10%,transparent)]]="community.active"
+      [class.border-[--accent]]="community.active">
+      <div class="flex items">
+        <!-- Icon -->
+        <div
+          class="text-2xl mr-3 bg-[color-mix(in_srgb,var(--background)_80%,transparent)] h-12 w-12 rounded-full flex items-center justify-center shadow-sm">
+          <span class="text-2xl">{{community.icon}}</span>
+        </div>
+
+        <div class="flex-1">
+          <div class="flex items-center">
+            <h3 class="font-medium text-sm">{{community.name}}</h3>
+            <div *ngIf="community.active"
+              class="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent ml-2 text-xs bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] text-[--accent]"
+              data-v0-t="badge">Active</div>
+          </div>
+
+          <div class="flex items-center text-xs text-[--muted-foreground] mt-1"><svg xmlns="http://www.w3.org/2000/svg"
+              width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-3 w-3 mr-1">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg><span>{{community.members}} members</span></div>
+        </div>
+
+        <button *ngIf="community.active"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-[--accent] text-[--accent-foreground] hover:bg-[color-mix(in_srgb,var(--accent)_90%,transparent)] h-9 rounded-xl px-3 shadow-sm">View</button>
+
+        <button *ngIf="!community.active"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-[--border] bg-background hover:bg-[--border] hover:text-accent-foreground h-9 rounded-lg px-3 shadow-sm">Join</button>
+
+      </div>
+
+      <!-- Topics -->
+
+      <div class="flex flex-wrap gap-1 mt-2">
+        <div *ngFor="let topic of community.topics"
+          class="inline-flex items-center rounded-full border border-[--border] px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-[--secondary-foreground] hover:bg-secondary/80 text-xs bg-[--secondary]"
+          data-v0-t="badge">{{topic}}</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
