@@ -6,15 +6,27 @@
 
   <!-- Bottom Nav -->
   <nav
-    class="flex justify-around border-t border-[--border] p-3 fixed bottom-0 left-0 right-0 bg-[color-mix(in_srgb,var(--background)_50%,transparent)] z-50 backdrop-blur-lg">
+    class="flex justify-around border-t border-[--border] p-3 fixed bottom-0 left-0 right-0 bg-[color-mix(in_srgb,var(--background)_50%,transparent)] z-10 backdrop-blur-lg">
     <a routerLink="/home" routerLinkActive="text-[--accent]" class="flex flex-col gap-1 justify-center items-center">
       <i-lucide class="size-4" [img]="Home"></i-lucide>
       <span class="text-xs font-semibold">Home</span>
+    </a>
+
+    <a routerLink="/schedule" routerLinkActive="text-[--accent]"
+      class="flex flex-col gap-1 justify-center items-center">
+      <i-lucide class="size-4" [img]="Schedule"></i-lucide>
+      <span class="text-xs font-semibold">Schedule</span>
     </a>
 
     <a routerLink="/chat" routerLinkActive="text-[--accent]" class="flex flex-col gap-1 justify-center items-center">
       <i-lucide class="size-4" [img]="Chat"></i-lucide>
       <span class="text-xs font-semibold">Chat</span>
     </a>
+
+    <a routerLink="/profile" routerLinkActive="text-[--accent]" class="flex flex-col gap-1 justify-center items-center">
+      <i-lucide class="size-4" [img]="Profile"></i-lucide>
+      <span class="text-xs font-semibold">Profile</span>
+    </a>
+
   </nav>
 </div>

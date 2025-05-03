@@ -1,0 +1,24 @@
+<!-- Header -->
+<header
+  class="sticky top-0 flex justify-between items-center p-4 border-b border-[--border] backdrop-blur-lg bg-[color-mix(in_srgb,var(--background)_50%,transparent)] z-40">
+  <h1 class="text-2xl text-[--accent] font-bold">Schedule</h1>
+  <div class="flex gap-2">
+  </div>
+</header>
+
+<main class="flex items-center justify-center p-4 overflow-auto">
+  <div class="max-w-md w-full flex flex-col ">
+
+    <app-calendar [selectedDate]="selectedDate" (dateSelected)="onDateSelected($event)"></app-calendar>
+    <app-sessions-list [selectedDate]="selectedDate" [sessions]="sessionsForSelectedDate"
+      (addSession)="showAddSessionDialog()">
+    </app-sessions-list>
+
+    <app-add-session-dialog *ngIf="isAddSessionDialogVisible" [selectedDate]="selectedDate"
+      (close)="hideAddSessionDialog()" (save)="saveSession($event)">
+    </app-add-session-dialog>
+
+    <div class="h-14"></div>
+  </div>
+
+</main>

@@ -19,6 +19,14 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'profile',
+    loadComponent: () => import('./pages/profile/profile.page').then((m) => m.ProfilePage),
+  },
+  {
+    path: 'schedule',
+    loadComponent: () => import('./pages/schedule/schedule.page').then((m) => m.SchedulePage),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
