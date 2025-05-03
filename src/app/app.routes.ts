@@ -7,7 +7,16 @@ export const routes: Routes = [
   },
   {
     path: 'chat',
-    loadComponent: () => import('./pages/chat/chat.page').then((m) => m.ChatPage),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/chat/chat.page').then((m) => m.ChatPage),
+      },
+      {
+        path: 'message/:id',
+        loadComponent: () => import('./pages/chat/message/message.page').then((m) => m.MessagePage),
+      }
+    ]
   },
   {
     path: '',

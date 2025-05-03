@@ -1,0 +1,7 @@
+.base-message {
+  @apply rounded-xl p-2 text-xs max-w-sm mb-2 bg-[--border] text-[--muted-foreground]
+}
+
+.user-message {
+  @apply text-[--accent-foreground] bg-[--accent] ml-auto
+}

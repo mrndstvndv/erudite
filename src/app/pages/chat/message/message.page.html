@@ -1,0 +1,49 @@
+<header
+  class="sticky top-0 flex justify-between items-center border-b border-[--border] backdrop-blur-lg bg-[color-mix(in_srgb,var(--background)_50%,transparent)] z-40">
+  <nav class="p-4 flex items-center gap-4">
+    <button (click)="back()" class="hover:text-[--accent]">
+      <i-lucide [img]="ArrowLeft" class="size-6"></i-lucide>
+    </button>
+
+    <div class="flex items-center">
+
+      <!-- Avatar -->
+      <div class="bg-gray-200 rounded-full size-7 mr-2"></div>
+
+      <h1 class="text-lg font-bold">{{message.name}}</h1>
+
+    </div>
+
+  </nav>
+</header>
+
+<main class="p-4">
+
+  <!-- Chat messages -->
+  <div class="flex-1 p-4 overflow-y-auto space-y-4">
+    <ng-container *ngFor="let message of message.messages">
+      <div class="flex" [ngClass]="message.fromuser ? 'justify-start' : 'justify-end'">
+        <div class="max-w-[80%] rounded-2xl px-4 py-3"
+          [ngClass]="message.fromuser ? 'bg-gray-100 text-gray-800' : 'bg-purple-600 text-white'">
+          <p class="text-sm">{{ message.text }}</p>
+          <p class="text-xs mt-1 opacity-70">{{ message.time }}</p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Space -->
+  <div class="h-28"></div>
+
+</main>
+
+<footer
+  class="fixed bottom-0 mb-14 left-0 right-0 border-t p-4 backdrop-blur-lg bg-[color-mix(in_srgb,var(--background)_50%,transparent)] z-40">
+  <form class="flex gap-2 items-center" (ngSubmit)="sendMessage($event)">
+    <input type="text" placeholder="Type a message..." [(ngModel)]="newMessage" name="message"
+      class="flex-1 rounded-xl px-4 py-2 bg-[--background] border border-[--border] focus:outline-none focus:ring-2 focus:ring-[--accent]">
+    <button type="submit" class="p-2 rounded-xl bg-[--accent]">
+      <i-lucide [img]="Send" class="size-4 text-[--accent-foreground]"></i-lucide>
+    </button>
+  </form>
+</footer>
